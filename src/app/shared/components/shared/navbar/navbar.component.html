@@ -1,0 +1,9 @@
+
+<mat-toolbar color="primary">
+    <span>Online Bidding Platform</span>
+    <span class="spacer"></span>
+    <ng-container *ngIf="currentUser">
+        <span>{{ currentUser.profile.name }}</span>
+        <button mat-button (click)="logout()">Logout</button>
+    </ng-container>
+</mat-toolbar>

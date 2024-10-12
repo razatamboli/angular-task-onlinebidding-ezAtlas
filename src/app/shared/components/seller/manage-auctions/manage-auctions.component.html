@@ -1,0 +1,52 @@
+
+<div class="manage-auctions-container">
+    <h3>Your Auctions</h3>
+
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <table mat-table [dataSource]="auctions" class="mat-elevation-z8">
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let auction"> {{auction.id}} </td>
+        </ng-container>
+
+        <!-- Title Column -->
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let auction"> {{auction.title}} </td>
+        </ng-container>
+
+        <!-- Current Price Column -->
+        <ng-container matColumnDef="currentPrice">
+            <th mat-header-cell *matHeaderCellDef> Current Price ($) </th>
+            <td mat-cell *matCellDef="let auction"> {{auction.currentPrice}} </td>
+        </ng-container>
+
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let auction"> {{auction.status}} </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let auction">
+                <button mat-button color="warn" (click)="cancelAuction(auction.id)"
+                    [disabled]="auction.status !== 'active'">Cancel</button>
+                <button mat-button color="primary" (click)="finalizeAuction(auction.id)"
+                    [disabled]="auction.status !== 'active'">Finalize</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="['id', 'title', 'currentPrice', 'status', 'actions']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['id', 'title', 'currentPrice', 'status', 'actions'];"></tr>
+    </table>
+
+    <div *ngIf="auctions.length === 0">
+        No auctions to display.
+    </div>
+</div>

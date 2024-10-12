@@ -1,0 +1,23 @@
+
+<h2 mat-dialog-title>Place Bid</h2>
+<div mat-dialog-content>
+    <form [formGroup]="bidForm">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Bid Amount ($)</mat-label>
+            <input matInput type="number" formControlName="amount" required>
+            <mat-error *ngIf="bidForm.get('amount')?.hasError('required')">
+                Bid amount is required
+            </mat-error>
+            <mat-error *ngIf="bidForm.get('amount')?.hasError('min')">
+                Bid must be higher than current price (${{ data.auction.currentPrice }})
+            </mat-error>
+        </mat-form-field>
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button color="primary" (click)="onSubmit()" [disabled]="!bidForm.valid">Place Bid</button>
+</div>

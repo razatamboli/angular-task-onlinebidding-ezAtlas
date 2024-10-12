@@ -1,0 +1,9 @@
+
+<div class="role-selection-container" *ngIf="currentUser">
+    <h2>Welcome, {{ currentUser.profile.name }}</h2>
+    <p>Please select your role:</p>
+    <div class="roles">
+        <button mat-raised-button color="primary" (click)="selectRole('seller')">Seller</button>
+        <button mat-raised-button color="accent" (click)="selectRole('bidder')">Bidder</button>
+    </div>
+</div>

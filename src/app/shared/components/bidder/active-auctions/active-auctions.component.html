@@ -1,0 +1,23 @@
+
+<div class="active-auctions-container">
+    <h3>Active Auctions</h3>
+
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <mat-card *ngFor="let auction of auctions" class="auction-card">
+        <mat-card-title>{{ auction.title }}</mat-card-title>
+        <mat-card-content>
+            <p>{{ auction.description }}</p>
+            <p>Current Price: ${{ auction.currentPrice }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button color="primary" (click)="openBidDialog(auction)">Place Bid</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <div *ngIf="auctions.length === 0">
+        No active auctions available.
+    </div>
+</div>

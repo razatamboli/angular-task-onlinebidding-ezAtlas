@@ -1,0 +1,38 @@
+
+<div class="create-auction-container">
+    <h3>Create New Auction</h3>
+    <form [formGroup]="auctionForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Auction Title</mat-label>
+            <input matInput formControlName="title" required>
+            <mat-error *ngIf="auctionForm.get('title')?.hasError('required')">
+                Title is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" required></textarea>
+            <mat-error *ngIf="auctionForm.get('description')?.hasError('required')">
+                Description is required
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Starting Price ($)</mat-label>
+            <input matInput type="number" formControlName="startingPrice" required>
+            <mat-error *ngIf="auctionForm.get('startingPrice')?.hasError('required')">
+                Starting price is required
+            </mat-error>
+            <mat-error *ngIf="auctionForm.get('startingPrice')?.hasError('min')">
+                Starting price must be at least $1
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">Create Auction</button>
+
+        <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+        </div>
+    </form>
+</div>

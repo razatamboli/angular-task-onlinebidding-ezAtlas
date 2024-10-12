@@ -1,0 +1,58 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "username": "seller1",
+        "password": "password",
+        "role": "seller",
+        "profile": {
+          "name": "Alice Seller",
+          "email": "alice@seller.com"
+        }
+      },
+      {
+        "id": 2,
+        "username": "bidder1",
+        "password": "password",
+        "role": "bidder",
+        "profile": {
+          "name": "Bob Bidder",
+          "email": "bob@bidder.com"
+        }
+      }
+    ],
+    "auctions": [
+      {
+        "id": 1,
+        "sellerId": 1,
+        "title": "Vintage Clock",
+        "description": "A beautiful vintage clock.",
+        "startingPrice": 100,
+        "currentPrice": 150,
+        "status": "active", 
+        "bidHistory": [
+          {
+            "id": 1,
+            "bidderId": 2,
+            "amount": 120,
+            "timestamp": "2023-10-10T10:00:00Z"
+          },
+          {
+            "id": 2,
+            "bidderId": 2,
+            "amount": 150,
+            "timestamp": "2023-10-10T10:05:00Z"
+          }
+        ]
+      }
+    ],
+    "notifications": [
+      {
+        "id": 1,
+        "userId": 2,
+        "message": "Your bid of $120 has been placed on Vintage Clock.",
+        "read": false,
+        "timestamp": "2023-10-10T10:00:00Z"
+      }
+    ]
+  }

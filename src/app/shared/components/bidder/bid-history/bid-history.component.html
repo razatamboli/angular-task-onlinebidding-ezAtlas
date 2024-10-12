@@ -1,0 +1,27 @@
+
+<div class="bid-history-container">
+    <h3>Your Bid History</h3>
+
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let record of bidHistory">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ record.auction.title }}
+                </mat-panel-title>
+                <mat-panel-description>
+                    Bid: ${{ record.bid.amount }}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Bid Amount: ${{ record.bid.amount }}</p>
+            <p>Timestamp: {{ record.bid.timestamp | date:'medium' }}</p>
+        </mat-expansion-panel>
+    </mat-accordion>
+
+    <div *ngIf="bidHistory.length === 0">
+        You haven't placed any bids yet.
+    </div>
+</div>
